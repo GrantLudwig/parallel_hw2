@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
