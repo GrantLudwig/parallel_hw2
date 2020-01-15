@@ -55,24 +55,33 @@ protected:
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
-        cout << "Before calcSum" << endl;
         calcSum(0);
-        cout << "After calcSum" << endl;
     }
 
     int sum(int node=0){
         return value(node);
     }
 
+    void prefixSums(Data *prefix){
+        calcPrefix(0, 0);
+    }
+
 private:
     void calcSum(int i) {
-        cout << "Node " << i << endl;
         if (isLeaf(i)){
-            cout << "Found leaf" << endl;
             return;
         }
         calcSum(left(i));
         calcSum(right(i));
+        interior->at(i) = value(left(i)) + value(right(i));
+    }
+
+    void calcPrefix(int i, int sumPrior) {
+        if (isLeaf(i)){
+            return;
+        }
+        calcPrefix(left(i), sumPrior);
+        calcPrefix(right(i), sumPrior);
         interior->at(i) = value(left(i)) + value(right(i));
     }
 };
@@ -96,7 +105,7 @@ int main() {
     cout << "Here" << endl;
     SumHeap heap(&data);
     cout << "Created heap" << endl;
-    //heap.prefixSums(&prefix);
+    heap.prefixSums(&prefix);
 
     // stop timer
     auto end = chrono::steady_clock::now();
