@@ -66,6 +66,7 @@ public:
 
 private:
     void calcSum(int i) {
+        cout << "Node " << i << endl;
         if (isLeaf(i)){
             cout << "Found leaf" << endl;
             return;
