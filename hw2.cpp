@@ -55,7 +55,9 @@ protected:
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
+        cout << "Before calcSum" << endl;
         calcSum(0);
+        cout << "After calcSum" << endl;
     }
 
     int sum(int node=0){
@@ -65,6 +67,7 @@ public:
 private:
     void calcSum(int i) {
         if (isLeaf(i)){
+            cout << "Found leaf" << endl;
             return;
         }
         calcSum(left(i));
