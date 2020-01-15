@@ -36,15 +36,15 @@ protected:
     }
 
     virtual int parent(int i) {
-        return interior->at((int) (i-1)/2);
+        return (int) (i-1)/2;
     }
 
     virtual int left(int i) {
-        return interior->at(2*i+1);
+        return 2*i+1;
     }
 
     virtual int right(int i) {
-        return interior->at(2*i+2);
+        return 2*i+2;
     }
 
     virtual bool isLeaf(int i){
