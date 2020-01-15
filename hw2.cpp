@@ -49,7 +49,7 @@ protected:
     virtual bool isLeaf(int i){
         return !(i < n-1);
     }
-}
+};
 
 class SumHeap : public Heaper {
 public:
@@ -70,7 +70,7 @@ private:
         calcSum(right(i));
         interior->at(i) = value(left(i)) + value(right(i));
     }
-}
+};
 
 int main() {
     Data data(N, 1);  // put a 1 in each element of the data array
