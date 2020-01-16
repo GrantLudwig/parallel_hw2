@@ -79,7 +79,7 @@ private:
     void calcPrefix(int i, int sumPrior, Data *prefix) {
         if (isLeaf(i)){
             //sumPrior + self
-            prefix->at(i) = sumPrior + value(i);
+            prefix->at(i-(n-1)) = sumPrior + value(i);
             return;
         }
         // left 0 + sumPrior
