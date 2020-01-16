@@ -6,7 +6,7 @@
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 8;
+const int N = 128;
 typedef vector<int> Data;
 
 class Heaper {
@@ -93,24 +93,6 @@ private:
 int main() {
     Data data(N, 1);  // put a 1 in each element of the data array
     Data prefix(N, 1);
-    data.at(0) = 1;
-    data.at(1) = 2;
-    data.at(2) = 3;
-    data.at(3) = 4;
-    data.at(4) = 5;
-    data.at(5) = 6;
-    data.at(6) = 7;
-    data.at(7) = 8;
-
-    prefix.at(0) = 1;
-    prefix.at(1) = 2;
-    prefix.at(2) = 3;
-    prefix.at(3) = 4;
-    prefix.at(4) = 5;
-    prefix.at(5) = 6;
-    prefix.at(6) = 7;
-    prefix.at(7) = 8;
-
     cout << "Data Vector:" << endl;
     for (int elem: data) {
         cout << elem << " ";
@@ -133,13 +115,13 @@ int main() {
     auto end = chrono::steady_clock::now();
     auto elpased = chrono::duration<double,milli>(end-start).count();
 
-    //int check = 1;
+    int check = 1;
     for (int elem: prefix) {
         cout << "Run: " << elem << endl;
-        // if (elem != check++) {
-        //     cout << "FAILED RESULT at " << check-1;
-        //     break;
-        // }
+        if (elem != check++) {
+            cout << "FAILED RESULT at " << check-1;
+            break;
+        }
     }
     cout << "in " << elpased << "ms" << endl;
     return 0;
