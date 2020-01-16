@@ -56,6 +56,9 @@ class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
         calcSum(0);
+        for (i = 0; i < size(); i++){
+            cout << i << ": " << interior->at(i) << endl;
+        }
     }
 
     int sum(int node=0){
@@ -63,7 +66,7 @@ public:
     }
 
     void prefixSums(Data *prefix){
-        calcPrefix(0, 0);
+        calcPrefix(0, 0, prefix);
     }
 
 private:
@@ -76,7 +79,7 @@ private:
         interior->at(i) = value(left(i)) + value(right(i));
     }
 
-    void calcPrefix(int i, int sumPrior) {
+    void calcPrefix(int i, int sumPrior, Data *prefix) {
         if (isLeaf(i)){
             return;
         }
