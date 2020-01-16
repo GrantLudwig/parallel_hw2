@@ -116,12 +116,13 @@ int main() {
     auto elpased = chrono::duration<double,milli>(end-start).count();
 
     int check = 1;
-    for (int elem: prefix)
+    for (int elem: prefix) {
         cout << "Run" << endl;
         if (elem != check++) {
             cout << "FAILED RESULT at " << check-1;
             break;
         }
+    }
     cout << "in " << elpased << "ms" << endl;
     return 0;
 }
