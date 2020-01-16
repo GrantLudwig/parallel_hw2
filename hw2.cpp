@@ -83,10 +83,10 @@ private:
             return;
         }
         // left 0 + sumPrior
-        calcPrefix(left(i), sumPrior);
+        calcPrefix(left(i), sumPrior, prefix);
         // right sumPrior + left sibling
         //int rightPrefix = sumPrior + value(left(i));
-        calcPrefix(right(i), sumPrior + value(left(i)));
+        calcPrefix(right(i), sumPrior + value(left(i)), prefix);
     }
 };
 
@@ -109,7 +109,7 @@ int main() {
     cout << "Here" << endl;
     SumHeap heap(&data);
     cout << "Created heap" << endl;
-    //heap.prefixSums(&prefix);
+    heap.prefixSums(&prefix);
 
     // stop timer
     auto end = chrono::steady_clock::now();
