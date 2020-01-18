@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
-//#include <future>
+#include <future>
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
@@ -56,7 +56,7 @@ protected:
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
-        calcSum(0);
+        calcSum(0, 0);
     }
 
     int sum(int node=0){
@@ -73,12 +73,12 @@ private:
             return;
         }
         if (level > 3) {
-            calcSum(left(i, level+1));
-            calcSum(right(i, level+1));
+            calcSum(left(i), level+1);
+            calcSum(right(i), level+1);
         }
         else {
             auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
-            calcSum(right(i, level+1));
+            calcSum(right(i), level+1);
         }
         handle.get();
         interior->at(i) = value(left(i)) + value(right(i));
