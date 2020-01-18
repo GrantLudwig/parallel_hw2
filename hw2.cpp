@@ -79,7 +79,7 @@ private:
         else {
             auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
             calcSum(right(i), level+1);
-            print("called");
+            cout << "Called" << endl;
             handle.get();
         }
         interior->at(i) = value(left(i)) + value(right(i));
