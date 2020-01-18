@@ -72,6 +72,7 @@ private:
         if (isLeaf(i)){
             return;
         }
+        cout << "Node: " << i << " Level: " << level << endl;
         if (level > 3) {
             calcSum(left(i), level+1);
             calcSum(right(i), level+1);
@@ -79,7 +80,7 @@ private:
         else {
             auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
             calcSum(right(i), level+1);
-            cout << "Called" << endl;
+            cout << "Thread" << endl;
             handle.get();
         }
         interior->at(i) = value(left(i)) + value(right(i));
