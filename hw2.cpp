@@ -72,7 +72,6 @@ private:
         if (isLeaf(i)){
             return;
         }
-        //cout << "Node: " << i << " Level: " << level << endl;
         if (level > 2) {
             calcSum(left(i), level+1);
             calcSum(right(i), level+1);
@@ -80,23 +79,29 @@ private:
         else {
             auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
             calcSum(right(i), level+1);
-            cout << "Thread" << endl;
             handle.get();
         }
         interior->at(i) = value(left(i)) + value(right(i));
     }
 
-    void calcPrefix(int i, int sumPrior, Data *prefix) {
+    void calcPrefix(int i, int sumPrior, Data *prefix, int level) {
         if (isLeaf(i)){
             //sumPrior + self
             prefix->at(i-(n-1)) = sumPrior + value(i);
             return;
         }
-        // left 0 + sumPrior
-        calcPrefix(left(i), sumPrior, prefix);
-        // right sumPrior + left sibling
-        //int rightPrefix = sumPrior + value(left(i));
-        calcPrefix(right(i), sumPrior + value(left(i)), prefix);
+        if (level > 2) {
+            // left 0 + sumPrior
+            calcPrefix(left(i), sumPrior, prefix, level+1);
+            // right sumPrior + left sibling
+            //int rightPrefix = sumPrior + value(left(i));
+            calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
+        }
+        else {
+            auto handle = async(launch::async, &SumHeap::calcPrefix, this, left(i), sumPrior, prefix, level+1);
+            calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
+            handle.get();
+        }
     }
 };
 
