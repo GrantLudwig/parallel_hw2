@@ -72,7 +72,7 @@ private:
         if (isLeaf(i)){
             return;
         }
-        cout << "Node: " << i << " Level: " << level << endl;
+        //cout << "Node: " << i << " Level: " << level << endl;
         if (level > 3) {
             calcSum(left(i), level+1);
             calcSum(right(i), level+1);
