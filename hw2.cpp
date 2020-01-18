@@ -73,7 +73,7 @@ private:
             return;
         }
         //cout << "Node: " << i << " Level: " << level << endl;
-        if (level > 3) {
+        if (level > 2) {
             calcSum(left(i), level+1);
             calcSum(right(i), level+1);
         }
