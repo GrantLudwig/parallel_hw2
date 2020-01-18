@@ -64,7 +64,7 @@ public:
     }
 
     void prefixSums(Data *prefix){
-        calcPrefix(0, 0, prefix);
+        calcPrefix(0, 0, prefix, 0);
     }
 
 private:
