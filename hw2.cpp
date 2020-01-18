@@ -108,22 +108,22 @@ private:
 int main() {
     Data data(N, 1);  // put a 1 in each element of the data array
     Data prefix(N, 1);
-    cout << "Data Vector:" << endl;
-    for (int elem: data) {
-        cout << elem << " ";
-    }
-    cout << endl << "Prefix Vector:" << endl;
-    for (int elem: prefix) {
-        cout << elem << " ";
-    }
-    cout << endl;
+    // cout << "Data Vector:" << endl;
+    // for (int elem: data) {
+    //     cout << elem << " ";
+    // }
+    // cout << endl << "Prefix Vector:" << endl;
+    // for (int elem: prefix) {
+    //     cout << elem << " ";
+    // }
+    // cout << endl;
 
     // start timer
     auto start = chrono::steady_clock::now();
 
-    cout << "Here" << endl;
+    // cout << "Here" << endl;
     SumHeap heap(&data);
-    cout << "Created heap" << endl;
+    // cout << "Created heap" << endl;
     heap.prefixSums(&prefix);
 
     // stop timer
@@ -132,7 +132,7 @@ int main() {
 
     int check = 1;
     for (int elem: prefix) {
-        cout << "Run: " << elem << endl;
+        //cout << "Run: " << elem << endl;
         if (elem != check++) {
             cout << "FAILED RESULT at " << check-1;
             break;
