@@ -6,8 +6,8 @@
 #include <future>
 using namespace std;
 
-//const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 256;
+const int N = 1<<26;  // FIXME must be power of 2 for now
+//const int N = 256;
 typedef vector<int> Data;
 
 class Heaper {
