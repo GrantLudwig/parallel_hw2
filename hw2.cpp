@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+//#include <future>
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
@@ -47,12 +48,6 @@ protected:
         return 2*i+2;
     }
 
-    // returns level of node
-    // TODO
-    virtual int level(int i) {
-        return 0;
-    }
-
     virtual bool isLeaf(int i){
         return !(i < n-1);
     }
@@ -73,12 +68,19 @@ public:
     }
 
 private:
-    void calcSum(int i) {
+    void calcSum(int i, int level) {
         if (isLeaf(i)){
             return;
         }
-        calcSum(left(i));
-        calcSum(right(i));
+        if (level > 3) {
+            calcSum(left(i, level+1));
+            calcSum(right(i, level+1));
+        }
+        else {
+            auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
+            calcSum(right(i, level+1));
+        }
+        handle.get();
         interior->at(i) = value(left(i)) + value(right(i));
     }
 
