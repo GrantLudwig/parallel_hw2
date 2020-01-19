@@ -135,6 +135,7 @@ int main() {
 
     SumHeap heap(&data);
     heap.printOut();
+    cout << "Done Print" << endl;
     heap.prefixSums(&prefix);
     for (int elem: prefix) {
         cout << "Run: " << elem << endl;
