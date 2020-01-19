@@ -9,7 +9,7 @@
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 16;
+const int N = 10;
 typedef vector<int> Data;
 
 class Heaper {
@@ -121,23 +121,12 @@ private:
 int main() {
     Data data(N, 1);  // put a 1 in each element of the data array
     Data prefix(N, 1);
-    // cout << "Data Vector:" << endl;
-    // for (int elem: data) {
-    //     cout << elem << " ";
-    // }
-    // cout << endl << "Prefix Vector:" << endl;
-    // for (int elem: prefix) {
-    //     cout << elem << " ";
-    // }
-    // cout << endl;
 
     // start timer
     auto start = chrono::steady_clock::now();
 
-    cout << "Here" << endl;
     SumHeap heap(&data);
-    cout << "Created heap" << endl;
-    heap.printOut();
+    //heap.printOut();
     heap.prefixSums(&prefix);
 
     // stop timer
