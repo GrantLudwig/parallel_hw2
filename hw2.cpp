@@ -25,9 +25,9 @@ protected:
     const Data *data;
     Data *interior;
 
-    virtual int size(){
-        return (n-1) + n;
-    }
+    // virtual int size(){
+    //     return (n-1) + n;
+    // }
 
     virtual int value(int i){
         if (i < n-1)
@@ -59,9 +59,9 @@ public:
         calcSum(0, 0);
     }
 
-    int sum(int node=0){
-        return value(node);
-    }
+    // int sum(int node=0){
+    //     return value(node);
+    // }
 
     void prefixSums(Data *prefix){
         calcPrefix(0, 0, prefix, 0);
@@ -91,10 +91,10 @@ private:
             return;
         }
         if (level > 2) {
-            // left 0 + sumPrior
+            // left: 0 + sumPrior
             calcPrefix(left(i), sumPrior, prefix, level+1);
-            // right sumPrior + left sibling
-            //int rightPrefix = sumPrior + value(left(i));
+            // right: sumPrior + left sibling
+            // rightPrefix = sumPrior + value(left(i));
             calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
         }
         else {
@@ -112,9 +112,7 @@ int main() {
     // start timer
     auto start = chrono::steady_clock::now();
 
-    // cout << "Here" << endl;
     SumHeap heap(&data);
-    // cout << "Created heap" << endl;
     heap.prefixSums(&prefix);
 
     // stop timer
