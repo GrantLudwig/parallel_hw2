@@ -76,13 +76,13 @@ protected:
         return (int) sqrt(n) + 1;
     }
 
-    virtual int prefixIndex(int i) {
+    virtual int prefixIndex() {
         if (powerTwo()) {
-            return i-interiorSize;
+            return 0;
         }
         else {
             int powerLevels = (int) pow(numLevels(), 2);
-            return i-interiorSize + (powerLevels - 2 + powerLevels);
+            return interiorSize - ((powerLevels - 2 + powerLevels) / 2);
         }
     }
 };
@@ -98,10 +98,14 @@ public:
     // }
 
     void prefixSums(Data *prefix) {
+        // calculate index offset needed to properly set the prefix
+        indexOffset = prefixIndex();
         calcPrefix(0, 0, prefix, 0);
     }
 
 private:
+    int indexOffset;
+
     void calcSum(int i, int level) {
         if (i >= size())
             return;
@@ -124,7 +128,7 @@ private:
             return;
         if (isLeaf(i)){
             //sumPrior + self
-            prefix->at(i-interiorSize) = sumPrior + value(i);
+            prefix->at(i-interiorSize+indexOffset) = sumPrior + value(i);
             return;
         }
         if (level > 2) {
