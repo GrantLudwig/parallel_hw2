@@ -68,16 +68,15 @@ protected:
         return !(i < interiorSize);
     }
 
-    virtual int numLevels() {
-        return (int) sqrt(n) + 1;
-    }
+    // virtual int numLevels() {
+    //     return (int) sqrt(n) + 1;
+    // }
 };
 
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
         calcSum(0, 0);
-        cout << "Levels: " << numLevels() << endl;
     }
 
     // int sum(int node=0) {
@@ -107,7 +106,6 @@ private:
     }
 
     void calcPrefix(int i, int sumPrior, Data *prefix, int level) {
-        cout << "Node: " << i << " sumPrior: " << sumPrior << " level: " << level << endl; 
         if (i >= size())
             return;
         if (isLeaf(i)){
@@ -115,18 +113,18 @@ private:
             prefix->at(i-interiorSize) = sumPrior + value(i);
             return;
         }
-        //if (level > 2) {
+        if (level > 2) {
             // left 0 + sumPrior
             calcPrefix(left(i), sumPrior, prefix, level+1);
             // right sumPrior + left sibling
             //int rightPrefix = sumPrior + value(left(i));
             calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
-        //}
-        // else {
-        //     auto handle = async(launch::async, &SumHeap::calcPrefix, this, left(i), sumPrior, prefix, level+1);
-        //     calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
-        //     handle.get();
-        // }
+        }
+        else {
+            auto handle = async(launch::async, &SumHeap::calcPrefix, this, left(i), sumPrior, prefix, level+1);
+            calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
+            handle.get();
+        }
     }
 };
 
@@ -144,6 +142,7 @@ int main() {
     for (int elem: prefix) {
         cout << "Run: " << elem << endl;
     }
+    cout << endl;
 
     // stop timer
     auto end = chrono::steady_clock::now();
