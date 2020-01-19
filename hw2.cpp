@@ -81,8 +81,8 @@ protected:
             return i-interiorSize;
         }
         else {
-            int powerLevels = (int) pow(numLevels());
-            return i-interiorSize (powerLevels - 2 + powerLevels);
+            int powerLevels = (int) pow((float) numLevels());
+            return i-interiorSize + (powerLevels - 2 + powerLevels);
         }
     }
 };
