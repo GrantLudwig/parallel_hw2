@@ -44,7 +44,7 @@ protected:
     }
 
     virtual int value(int i) {
-        if (i > size())
+        if (i == size())
             return 0;
         if (i < interiorSize)
             return interior->at(i);
