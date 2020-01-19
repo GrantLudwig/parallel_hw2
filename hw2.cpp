@@ -122,9 +122,12 @@ int main() {
     // start timer
     auto start = chrono::steady_clock::now();
 
-    // cout << "Here" << endl;
+    cout << "Here" << endl;
     SumHeap heap(&data);
-    // cout << "Created heap" << endl;
+    cout << "Created heap" << endl;
+    for (int elem: data) {
+        cout << elem << " ";
+    }
     heap.prefixSums(&prefix);
 
     // stop timer
