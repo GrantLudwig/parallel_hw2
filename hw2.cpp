@@ -44,10 +44,10 @@ protected:
     }
 
     virtual int value(int i) {
-        if (i < n-1)
+        if (i < interiorSize)
             return interior->at(i);
         else
-            return data->at(i - (n-1));
+            return data->at(i - interiorSize);
     }
 
     virtual int parent(int i) {
