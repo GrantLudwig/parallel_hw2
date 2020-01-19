@@ -9,7 +9,7 @@
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 9;
+const int N = 12;
 typedef vector<int> Data;
 
 class Heaper {
@@ -69,11 +69,21 @@ protected:
     }
 
     virtual bool powerTwo() {
-        return (ceil(log2(n))== floor(log2(n)));
+        return (ceil(log2(n)) == floor(log2(n)));
     }
 
     virtual int numLevels() {
         return (int) sqrt(n) + 1;
+    }
+
+    virtual int prefixIndex(int i) {
+        if powerTwo() {
+            return i-interiorSize;
+        }
+        else {
+            int powerLevels = pow(numLevels)
+            return i-interiorSize (powerLevels - 2 + powerLevels);
+        }
     }
 };
 
