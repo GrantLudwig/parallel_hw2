@@ -68,9 +68,13 @@ protected:
         return !(i < interiorSize);
     }
 
-    // virtual int numLevels() {
-    //     return (int) sqrt(n) + 1;
-    // }
+    virtual bool powerTwo() {
+        return (ceil(log2(n))== floor(log2(n)));
+    }
+
+    virtual int numLevels() {
+        return (int) sqrt(n) + 1;
+    }
 };
 
 class SumHeap : public Heaper {
