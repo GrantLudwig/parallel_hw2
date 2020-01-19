@@ -44,6 +44,8 @@ protected:
     }
 
     virtual int value(int i) {
+        if (i > size())
+            return 0;
         if (i < interiorSize)
             return interior->at(i);
         else
@@ -78,9 +80,9 @@ public:
         cout << "Levels: " << numLevels() << endl;
     }
 
-    int sum(int node=0) {
-        return value(node);
-    }
+    // int sum(int node=0) {
+    //     return value(node);
+    // }
 
     void prefixSums(Data *prefix) {
         calcPrefix(0, 0, prefix, 0);
