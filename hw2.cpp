@@ -1,17 +1,29 @@
-//hw2.cpp
-//Grant Ludwig
+/** 
+ * @file hw2.cpp
+ * @author Grant Ludwig
+ * @date 1/21/20
+ * @brief This is an implementation of the Ladner-Ficher parallel prefix sum algorithm
+ */
 
 #include <iostream>
 #include <vector>
 #include <chrono>
-#include <future>
+#include <future> // for async
 using namespace std;
 
 const int N = 1<<26;
 typedef vector<int> Data;
 
+/**
+ * Heaper Class
+ * @brief Creates a heap like structure where the original data is preserved at the end of the "created" array
+ */
 class Heaper {
 public:
+    /**
+     * @brief Heaper constructor
+     * @param Data Pointer to a vector of data
+     */
     Heaper(const Data *data) : n(data->size()), data(data) {
         interior = new Data(n-1, 0);
     }
@@ -23,12 +35,12 @@ public:
 protected:
     int n;
     const Data *data;
-    Data *interior;
+    Data *interior; // the interior array
 
-    virtual int size(){
-        return (n-1) + n;
-    }
-
+    /**
+     * @brief Gets the value of the passed in node
+     * @param i Index of the node we want the value of
+     */
     virtual int value(int i){
         if (i < n-1)
             return interior->at(i);
@@ -36,32 +48,43 @@ protected:
             return data->at(i - (n-1));
     }
 
-    virtual int parent(int i) {
-        return (int) (i-1)/2;
-    }
-
+    /**
+     * @brief Returns the index of the left child node of the passed in node
+     * @param i Index of the node we want the left child of
+     */
     virtual int left(int i) {
         return 2*i+1;
     }
 
+    /**
+     * @brief Returns the index of the right child node of the passed in node
+     * @param i Index of the node we want the right child of
+     */
     virtual int right(int i) {
         return 2*i+2;
     }
 
+    /**
+     * @brief Returns true if the node is a leaf node
+     * @param i Index of the node we want to know is a leaf node
+     */
     virtual bool isLeaf(int i){
         return !(i < n-1);
     }
 };
 
+/**
+ * SumHeap Class
+ * @brief Extends from the Heaper class
+ * Calculates the sum and prefixSum
+ */
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
         calcSum(0, 0);
     }
 
-    int sum(int node=0){
-        return value(node);
-    }
+    
 
     void prefixSums(Data *prefix){
         calcPrefix(0, 0, prefix, 0);
