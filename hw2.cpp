@@ -44,7 +44,7 @@ protected:
     }
 
     virtual int value(int i) {
-        if (i == size())
+        if (i >= size())
             return 0;
         if (i < interiorSize)
             return interior->at(i);
@@ -65,7 +65,7 @@ protected:
     }
 
     virtual bool isLeaf(int i) {
-        return !(i < n-1);
+        return !(i < interiorSize);
     }
 
     virtual int numLevels() {
