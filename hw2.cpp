@@ -140,7 +140,7 @@ int main() {
 
     int check = 1;
     for (int elem: prefix) {
-        //cout << "Run: " << elem << endl;
+        cout << "Run: " << elem << endl;
         if (elem != check++) {
             cout << "FAILED RESULT at " << check-1;
             break;
