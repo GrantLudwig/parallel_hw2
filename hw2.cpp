@@ -90,9 +90,10 @@ public:
 
 private:
     void calcSum(int i, int level) {
-        if (isLeaf(i)){
+        if (i >= size())
             return;
-        }
+        if (isLeaf(i))
+            return;
         if (level > 2) {
             calcSum(left(i), level+1);
             calcSum(right(i), level+1);
@@ -106,6 +107,8 @@ private:
     }
 
     void calcPrefix(int i, int sumPrior, Data *prefix, int level) {
+        if (i >= size())
+            return;
         if (isLeaf(i)){
             //sumPrior + self
             prefix->at(i-(n-1)) = sumPrior + value(i);
