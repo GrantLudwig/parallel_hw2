@@ -16,9 +16,11 @@ class Heaper {
 public:
     Heaper(const Data *data) : n(data->size()), data(data) {
         if (n % 2 == 0) // if even need n-1 interior nodes
-            interior = new Data(n-1, 0);
+            interiorSize = n-1;
         else // if odd, need n interior nodes
-            interior = new Data(n, 0);
+            interiorSize = n;
+
+        interior = new Data(interiorSize, 0);  
     }
 
     virtual void printOut(){
@@ -35,9 +37,10 @@ protected:
     int n;
     const Data *data;
     Data *interior;
+    int interiorSize;
 
     virtual int size() {
-        return (n-1) + n;
+        return interiorSize + n;
     }
 
     virtual int value(int i) {
