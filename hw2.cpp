@@ -126,7 +126,7 @@ int main() {
     auto start = chrono::steady_clock::now();
 
     SumHeap heap(&data);
-    //heap.printOut();
+    heap.printOut();
     heap.prefixSums(&prefix);
     for (int elem: prefix) {
         cout << "Run: " << elem << endl;
