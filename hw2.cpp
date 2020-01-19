@@ -80,17 +80,38 @@ protected:
  */
 class SumHeap : public Heaper {
 public:
+    /**
+     * @brief SumHeap constructor
+     * @param Data Pointer to a vector of data
+     * Will calculate the sum once constructed
+     */
     SumHeap(const Data *data) : Heaper(data) {
         calcSum(0, 0);
     }
 
-    
+    /**
+     * @brief Returns the sum at that node
+     * @param node Index of the node that we want to know the sum of
+     */
+    int sum(int node=0) {
+        return value(node);
+    }
 
+    /**
+     * @brief Sets the prefix array to the prefix sum
+     * @param prefix Pointer to a vector to set the prefix sum to
+     */
     void prefixSums(Data *prefix){
         calcPrefix(0, 0, prefix, 0);
     }
 
 private:
+    /**
+     * @brief Calulates the sum of the heap through threading and recursion.
+     * Will only use up to 8 threads.
+     * @param i The index of the node
+     * @param level Level of the current node
+     */
     void calcSum(int i, int level) {
         if (isLeaf(i)){
             return;
@@ -107,6 +128,15 @@ private:
         interior->at(i) = value(left(i)) + value(right(i));
     }
 
+    /**
+     * @brief Calulates the prefix, placing it in the passed in prefix vector.
+     * Works through threading and recursion.
+     * Will only use up to 8 threads.
+     * @param i The index of the node
+     * @param sumPrior Sum of the prior node
+     * @param prefix Pointer to a vector to set the prefix
+     * @param level Level of the current node
+     */
     void calcPrefix(int i, int sumPrior, Data *prefix, int level) {
         if (isLeaf(i)){
             //sumPrior + self
