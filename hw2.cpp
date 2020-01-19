@@ -17,6 +17,12 @@ public:
         interior = new Data(n-1, 0);
     }
 
+    virtual void printOut(){
+        for (int i = 0; i < size(); i++) {
+            cout << "Node: 0 " << value(i) << endl;
+        }
+    }
+
     virtual ~Heaper() {
         delete interior;
     }
@@ -51,12 +57,6 @@ protected:
 
     virtual bool isLeaf(int i) {
         return !(i < n-1);
-    }
-
-    virtual void printOut(){
-        for (int i = 0; i < size(); i++) {
-            cout << "Node: 0 " << value(i) << endl;
-        }
     }
 };
 
