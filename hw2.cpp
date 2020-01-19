@@ -169,13 +169,9 @@ int main() {
     auto start = chrono::steady_clock::now();
 
     SumHeap heap(&data);
-    heap.printOut();
-    cout << "Done Print" << endl;
+    //heap.printOut();
+    //cout << "Done Print" << endl;
     heap.prefixSums(&prefix);
-    for (int elem: prefix) {
-        cout << "Run: " << elem << endl;
-    }
-    cout << endl;
 
     // stop timer
     auto end = chrono::steady_clock::now();
