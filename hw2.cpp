@@ -5,6 +5,7 @@
 #include <vector>
 #include <chrono>
 #include <future>
+#include <math.h>
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
@@ -58,12 +59,17 @@ protected:
     virtual bool isLeaf(int i) {
         return !(i < n-1);
     }
+
+    virtual int numLevels() {
+        return (int) sqrt(n) + 1;
+    }
 };
 
 class SumHeap : public Heaper {
 public:
     SumHeap(const Data *data) : Heaper(data) {
         calcSum(0, 0);
+        cout << "Levels: " << numLevels() << endl;
     }
 
     int sum(int node=0) {
