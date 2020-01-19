@@ -9,7 +9,7 @@
 using namespace std;
 
 //const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 9;
+const int N = 10;
 typedef vector<int> Data;
 
 class Heaper {
@@ -19,7 +19,7 @@ public:
     }
 
     virtual void printOut(){
-        for (int i = 0; i <= size(); i++) {
+        for (int i = 0; i < size(); i++) {
             cout << "Node " << i << ": " << value(i) << endl;
         }
     }
