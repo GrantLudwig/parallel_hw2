@@ -25,9 +25,9 @@ protected:
     const Data *data;
     Data *interior;
 
-    // virtual int size(){
-    //     return (n-1) + n;
-    // }
+    virtual int size(){
+        return (n-1) + n;
+    }
 
     virtual int value(int i){
         if (i < n-1)
@@ -59,9 +59,9 @@ public:
         calcSum(0, 0);
     }
 
-    // int sum(int node=0){
-    //     return value(node);
-    // }
+    int sum(int node=0){
+        return value(node);
+    }
 
     void prefixSums(Data *prefix){
         calcPrefix(0, 0, prefix, 0);
