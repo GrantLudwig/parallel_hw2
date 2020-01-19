@@ -1,4 +1,4 @@
-CPPFLAGS = -std=c++11 -Wall -Werror -pedantic -ggdb -pthread
+CPPFLAGS = -std=c++11 -Wall -Werror -pedantic -ggdb -O2
 
 hw2 : hw2.cpp
 	g++ $(CPPFLAGS) $< -o $@
