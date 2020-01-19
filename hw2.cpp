@@ -112,7 +112,7 @@ private:
             return;
         if (isLeaf(i)){
             //sumPrior + self
-            prefix->at(i-(n-1)) = sumPrior + value(i);
+            prefix->at(i-interiorSize) = sumPrior + value(i);
             return;
         }
         //if (level > 2) {
