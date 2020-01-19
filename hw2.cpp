@@ -7,8 +7,7 @@
 #include <future>
 using namespace std;
 
-const int N = 1<<26;  // FIXME must be power of 2 for now
-//const int N = 256;
+const int N = 1<<26;
 typedef vector<int> Data;
 
 class Heaper {
@@ -109,15 +108,6 @@ private:
 int main() {
     Data data(N, 1);  // put a 1 in each element of the data array
     Data prefix(N, 1);
-    // cout << "Data Vector:" << endl;
-    // for (int elem: data) {
-    //     cout << elem << " ";
-    // }
-    // cout << endl << "Prefix Vector:" << endl;
-    // for (int elem: prefix) {
-    //     cout << elem << " ";
-    // }
-    // cout << endl;
 
     // start timer
     auto start = chrono::steady_clock::now();
@@ -133,7 +123,6 @@ int main() {
 
     int check = 1;
     for (int elem: prefix) {
-        //cout << "Run: " << elem << endl;
         if (elem != check++) {
             cout << "FAILED RESULT at " << check-1;
             break;
