@@ -19,7 +19,7 @@ public:
 
     virtual void printOut(){
         for (int i = 0; i < size(); i++) {
-            cout << "Node: 0 " << value(i) << endl;
+            cout << "Node " << i << ": " << value(i) << endl;
         }
     }
 
