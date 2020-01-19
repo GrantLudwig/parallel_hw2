@@ -8,8 +8,7 @@
 #include <math.h>
 using namespace std;
 
-//const int N = 1<<26;  // FIXME must be power of 2 for now
-const int N = 100000000;
+const int N = 1<<26;  // FIXME must be power of 2 for now
 //const int N = 9;
 typedef vector<int> Data;
 
