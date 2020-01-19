@@ -82,7 +82,7 @@ protected:
         }
         else {
             int powerLevels = (int) pow(numLevels(), 2);
-            return interiorSize - ((powerLevels - 2 + powerLevels) / 2);
+            return size() - ((powerLevels - 2 + powerLevels) / 2);
         }
     }
 };
