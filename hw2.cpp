@@ -15,7 +15,10 @@ typedef vector<int> Data;
 class Heaper {
 public:
     Heaper(const Data *data) : n(data->size()), data(data) {
-        interior = new Data(n-1, 0);
+        if (n % 2 == 0) // if even need n-1 interior nodes
+            interior = new Data(n-1, 0);
+        else // if odd, need n interior nodes
+            interior = new Data(n, 0);
     }
 
     virtual void printOut(){
