@@ -17,7 +17,7 @@ public:
         interior = new Data(n-1, 0);
     }
 
-    virtual ~Heaper(){
+    virtual ~Heaper() {
         delete interior;
     }
 
@@ -26,11 +26,11 @@ protected:
     const Data *data;
     Data *interior;
 
-    virtual int size(){
+    virtual int size() {
         return (n-1) + n;
     }
 
-    virtual int value(int i){
+    virtual int value(int i) {
         if (i < n-1)
             return interior->at(i);
         else
@@ -49,8 +49,14 @@ protected:
         return 2*i+2;
     }
 
-    virtual bool isLeaf(int i){
+    virtual bool isLeaf(int i) {
         return !(i < n-1);
+    }
+
+    virtual void printOut(){
+        for (int i = 0; i < size(); i++) {
+            cout << "Node: 0 " << value(i) << endl;
+        }
     }
 };
 
@@ -60,11 +66,11 @@ public:
         calcSum(0, 0);
     }
 
-    int sum(int node=0){
+    int sum(int node=0) {
         return value(node);
     }
 
-    void prefixSums(Data *prefix){
+    void prefixSums(Data *prefix) {
         calcPrefix(0, 0, prefix, 0);
     }
 
@@ -125,9 +131,7 @@ int main() {
     cout << "Here" << endl;
     SumHeap heap(&data);
     cout << "Created heap" << endl;
-    for (int elem: data) {
-        cout << elem << " ";
-    }
+    heap.printOut();
     heap.prefixSums(&prefix);
 
     // stop timer
