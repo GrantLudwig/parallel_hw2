@@ -73,7 +73,7 @@ protected:
     }
 
     virtual int numLevels() {
-        return 1 + floor(log2(x));
+        return 1 + floor(log2(n));
     }
 
     virtual int prefixIndex() {
