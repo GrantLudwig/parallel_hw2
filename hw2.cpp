@@ -123,7 +123,7 @@ private:
         else {
             auto handle = async(launch::async, &SumHeap::calcSum, this, left(i), level+1);
             calcSum(right(i), level+1);
-            handle.get();
+            handle.get(); // waits for left side to finish
         }
         interior->at(i) = value(left(i)) + value(right(i));
     }
@@ -153,7 +153,7 @@ private:
         else {
             auto handle = async(launch::async, &SumHeap::calcPrefix, this, left(i), sumPrior, prefix, level+1);
             calcPrefix(right(i), sumPrior + value(left(i)), prefix, level+1);
-            handle.get();
+            handle.get(); // waits for left side to finish
         }
     }
 };
